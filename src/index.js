@@ -1,13 +1,19 @@
 // init project
-var express = require("express");
-var bodyParser = require("body-parser");
-var app = express();
-var url = String(process.env.HOSTNAME).split("-");
+const express = require("express");
+const bodyParser = require("body-parser");
+const faker = require("faker");
+const app = express();
+const url = String(process.env.HOSTNAME).split("-");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const users = [];
+const users = [
+  {
+    name: faker.name.findName(),
+    avatar: faker.image.imageUrl()
+  }
+];
 
 // This route processes GET requests to "/"`
 app.get("/", function (req, res) {
